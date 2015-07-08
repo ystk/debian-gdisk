@@ -1,0 +1,17 @@
+Decription: Don't use a kernel dependent default gpt type when creating a
+ partition (Linux is 8300 and kFreeBSD is A503, see support.h)
+Author: Guillaume Delacour <gui@iroqwa.org>
+Last-Update: 2013-12-19
+Forwarded: https://sourceforge.net/p/gptfdisk/code/merge-requests/2/
+
+--- a/gdisk_test.sh
++++ b/gdisk_test.sh
+@@ -147,7 +147,7 @@
+ 		;;
+ 
+ 		sgdisk)
+-			$SGDISK_BIN $TEMP_DISK -${OPT_NEW} 1 -${OPT_CHANGE_NAME} 1:"${TEST_PART_DEFAULT_NAME}"
++			$SGDISK_BIN $TEMP_DISK -${OPT_NEW} 1 -${OPT_CHANGE_NAME} 1:"${TEST_PART_DEFAULT_NAME}" -${OPT_CHANGE_TYPE} 1:$TEST_PART_TYPE
+ 		;;
+ 	esac
+ 

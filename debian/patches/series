@@ -1,0 +1,8 @@
+Fixed-bug-that-caused-spurious-1-exit-condition-in-g.patch
+ncursesw5.diff
+set_default_partition_type-test.diff
+manpages.diff
+kfreebsd_character_devices.diff
+fix-change_disk_uid-test.diff
+enable_make_test.diff
+test_exit_condition.diff

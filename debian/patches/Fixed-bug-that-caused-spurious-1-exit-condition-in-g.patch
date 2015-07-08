@@ -1,0 +1,44 @@
+From: "Roderick W. Smith" <rodsmith@rodsbooks.com>
+Date: Sat, 29 Mar 2014 00:45:59 -0400
+Origin: http://sourceforge.net/p/gptfdisk/code/ci/a920398fa393f9d6301b32b191bc01e086ab8bc8
+Bug: http://sourceforge.net/p/gptfdisk/mailman/message/32068566/
+Subject: Fixed bug that caused spurious "1" exit condition in gdisk.
+
+---
+ gdisk.cc | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/gdisk.cc b/gdisk.cc
+index b3c6240..5768869 100644
+--- a/gdisk.cc
++++ b/gdisk.cc
+@@ -15,6 +15,7 @@ int main(int argc, char* argv[]) {
+    GPTDataTextUI theGPT;
+    string device = "";
+    UnicodeString uString;
++   int isError = 0;
+ 
+    cout << "GPT fdisk (gdisk) version " << GPTFDISK_VERSION << "\n\n";
+ 
+@@ -47,16 +48,20 @@ int main(int argc, char* argv[]) {
+             device = (string) argv[1];
+          } else { // 3 arguments, but none is "-l"
+             cerr << "Usage: " << argv[0] << " [-l] device_file\n";
++            isError = 1;
+          } // if/elseif/else
+          if (device != "") {
+             theGPT.JustLooking();
+             if (theGPT.LoadPartitions(device))
+                theGPT.DisplayGPTData();
++            else
++               isError = 1;
+          } // if
+          break;
+       default:
+          cerr << "Usage: " << argv[0] << " [-l] device_file\n";
++         isError = 1;
+          break;
+    } // switch
+-   return 1 ;
++   return (isError);
+ } // main

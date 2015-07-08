@@ -1,0 +1,18 @@
+From: Jeff Epler <jepler@unpythonic.net>
+Subject: All devices are characters devices on kFreeBSD
+Last-Update: 2013-07-31
+Bug-Debian: http://bugs.debian.org/696813
+Forwarded: https://sourceforge.net/p/gptfdisk/code/merge-requests/3/
+
+--- a/diskio-unix.cc
++++ b/diskio-unix.cc
+@@ -73,7 +73,8 @@
+          if (fstat64(fd, &st) == 0) {
+             if (S_ISDIR(st.st_mode))
+                cerr << "The specified path is a directory!\n";
+-#if !defined(__FreeBSD__) && !defined(__APPLE__)
++#if !(defined(__FreeBSD__) || defined(__FreeBSD_kernel__)) \
++			&& !defined(__APPLE__)
+             else if (S_ISCHR(st.st_mode))
+                cerr << "The specified path is a character device!\n";
+ #endif

@@ -1,0 +1,33 @@
+Author: Guillaume Delacour <gui@iroqwa.org>
+Description: Test return code of successful commands
+Forwarded: no
+Last-Update: 2015-03-12
+
+Index: gdisk/gdisk_test.sh
+===================================================================
+--- gdisk.orig/gdisk_test.sh
++++ gdisk/gdisk_test.sh
+@@ -115,9 +115,23 @@ Y
+ w
+ Y
+ EOF
++
++			ret=$?
++			if [ $ret -ne 0 ]
++			then
++				pretty_print "FAILED" "gdisk return $ret when creating partition table"
++				exit 1
++			fi
+ 		;;
+ 		sgdisk)
+ 			$SGDISK_BIN $TEMP_DISK -${OPT_CLEAR}
++
++			ret=$?
++			if [ $ret -ne 0 ]
++			then
++				pretty_print "FAILED" "sgdisk return $ret when creating partition table"
++				exit 1
++			fi
+ 		;;
+ 	esac
+ 

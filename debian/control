@@ -1,0 +1,31 @@
+Source: gdisk
+Section: admin
+Priority: extra
+Maintainer: Guillaume Delacour <gui@iroqwa.org>
+Build-Depends: debhelper (>= 9), libpopt-dev, uuid-dev, libncursesw5-dev
+Standards-Version: 3.9.5
+Homepage: http://sourceforge.net/projects/gptfdisk/
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/gdisk.git
+Vcs-Git: git://anonscm.debian.org/collab-maint/gdisk.git
+
+Package: gdisk
+Architecture: any
+Replaces: gdisk-noicu (<< 0.8.10-1~)
+Breaks: gdisk-noicu (<< 0.8.10-1~)
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: groff-base
+Description: GPT fdisk text-mode partitioning tool
+ GPT fdisk (aka gdisk) is a text-mode partitioning
+ tool that works on Globally Unique Identifier
+ (GUID) Partition Table (GPT) disks, rather than
+ on the more common (through 2009)
+ Master Boot Record (MBR) partition tables.
+ .
+ Please note that gdisk is still in beta version.
+
+Package: gdisk-noicu
+Depends: gdisk, ${misc:Depends}
+Architecture: all
+Section: oldlibs
+Description: transitional dummy package
+ This is a transitional dummy package. It can safely be removed.
