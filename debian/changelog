@@ -1,3 +1,13 @@
+gdisk (0.8.10-2+deb8u1) jessie-security; urgency=high
+
+  * Non-maintainer upload by the ELTS team.
+  * Add patch to fix segfault on some weird data structures.
+    (Fixes: CVE-2020-0256)
+  * Add patch to fix a bug that could cause crash if a
+    badly-formatted MBR disk was read. (Fixes: CVE-2021-0308)
+
+ -- Utkarsh Gupta <utkarsh@debian.org>  Mon, 08 Feb 2021 11:10:18 +0530
+
 gdisk (0.8.10-2) unstable; urgency=medium
 
   [ intrigeri ]

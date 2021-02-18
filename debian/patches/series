@@ -6,3 +6,5 @@ kfreebsd_character_devices.diff
 fix-change_disk_uid-test.diff
 enable_make_test.diff
 test_exit_condition.diff
+CVE-2021-0308.patch
+CVE-2020-0256.patch
